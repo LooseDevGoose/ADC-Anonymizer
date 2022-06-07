@@ -8,9 +8,14 @@ current_path = os.getcwd()
 # Generate random number and rewrite matches
 def rewrite_ip(text):
 
-    edited_text = re.sub(
+    ip_removal = re.sub(
         "[1-9][0-9]{1,3}", f"{str(random.randrange(1, 255))}", text)
-    return (str(edited_text))
+
+    hash_removal = re.sub(
+        "[0-9a-fA-F]{80,160}", f"0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000", ip_removal)
+    print(hash_removal)
+
+    return (str(hash_removal))
 
 
 # Get all .conf files from current directory
